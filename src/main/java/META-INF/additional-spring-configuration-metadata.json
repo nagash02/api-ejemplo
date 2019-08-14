@@ -1,0 +1,99 @@
+{
+	"properties": [
+		{
+			"name": "cl.trabajando.api-ejemplo.driver-class-name",
+			"type": "java.lang.String",
+			"description": "Driver de Coneccion a la base de datos que usará el api"
+		},
+		{
+			"name": "cl.trabajando.api-ejemplo.datasource.url",
+			"type": "java.lang.String",
+			"description": "Url JDBC a utilizar"
+		},
+		{
+			"name": "cl.trabajando.api-ejemplo.datasource.username",
+			"type": "java.lang.String",
+			"description": "Usuario de la base de datos que esta utilizando"
+		},
+		{
+			"name": "cl.trabajando.api-ejemplo.datasource.password",
+			"type": "java.lang.String",
+			"description": "password del usuario de base de datos"
+		},
+		{
+			"name": "cl.trabajando.api-ejemplo.datasource.pool-size",
+			"type": "java.lang.String",
+			"description": "tamaño del pool de conexiones"
+		},
+		{
+			"name": "trabajando.jwt.algorithm",
+			"type": "java.lang.String",
+			"description": "Algoritmo usado para la creación de JWT"
+		},
+		{
+			"name": "trabajando.jwt.secret",
+			"type": "java.lang.String",
+			"description": "Secreto usado para la validación de JWT, este secreto debe ser el usado por KONG"
+		},
+		{
+			"name": "trabajando.jwt.issuer",
+			"type": "java.lang.String",
+			"description": "Issuer usado como claim para verificar dueño de JWT - dejar en 'trabajando'"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.authentication-database",
+			"type": "java.lang.String",
+			"description": "Intancia de administracion de la BD de mongo"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.database",
+			"type": "java.lang.String",
+			"description": "Base de datos a conectar"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.host",
+			"type": "java.lang.String",
+			"description": "host que contiene el servicio mongo db"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.username",
+			"type": "java.lang.String",
+			"description": "nombre del usuario que establece la conexion"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.password",
+			"type": "java.lang.String",
+			"description": "clave del usuario de MOngo DB"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.port",
+			"type": "java.lang.String",
+			"description": "puerto de la instancia de mongo"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.repositories.enabled",
+			"type": "java.lang.String",
+			"description": "flag que evita que el autoconfigurado mapee directamente el repo"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.mongo-pool.max-connections",
+			"type": "java.lang.String",
+			"description": "maximo del pool de conexiones recurrentes"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.mongo-pool.min-connections",
+			"type": "java.lang.String",
+			"description": "pool minimo de conexiones"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.mongo-pool.max-idle-milliseconds",
+			"type": "java.lang.String",
+			"description": "tiempo máximo en milisegungos de espera"
+		},
+		{
+			"name": "cl.trabajando.data.mongodb.mongo-pool.threads-allowed-to-block-for-connection-multiplier",
+			"type": "java.lang.String",
+			"description": "Máximo de conexiones que pueden bloquear la colección"
+		}
+	]
+}

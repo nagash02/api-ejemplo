@@ -20,19 +20,32 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import cl.trabajando.api_ejemplo.interceptors.MDCInterceptor;
 import cl.trabajando.api_ejemplo.mappers.HolaMundoMapper;
 
 @Configuration
 @SpringBootApplication
 @ComponentScan(basePackages = { "cl.trabajando.api_ejemplo.controllers", "cl.trabajando.api_ejemplo.services",
-	"cl.trabajando.api_ejemplo.controllers_advices","cl.trabajando.api_ejemplo.repo" })
+	"cl.trabajando.api_ejemplo.controllers_advices", "cl.trabajando.api_ejemplo.repo" })
 public class GlobalConfiguration implements WebMvcConfigurer {
+
+    @Bean
+    public HandlerInterceptor addMDCInterceptor() {
+	return new MDCInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+	registry.addInterceptor(addMDCInterceptor()).addPathPatterns("/**");
+    }
 
     /**
      * obtiene la configuración de ambiente
@@ -71,7 +84,8 @@ public class GlobalConfiguration implements WebMvcConfigurer {
 	config.addDataSourceProperty("prepStmtCacheSize", "250");
 	config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 	config.setMinimumIdle(1);
-	config.setMaximumPoolSize(Integer.parseInt(env.getProperty("cl.trabajando.api-ejemplo.datasource.pool-size").trim()));
+	config.setMaximumPoolSize(
+		Integer.parseInt(env.getProperty("cl.trabajando.api-ejemplo.datasource.pool-size").trim()));
 	return new HikariDataSource(config);
     }
 
@@ -121,7 +135,7 @@ public class GlobalConfiguration implements WebMvcConfigurer {
 	ReloadableResourceBundleMessageSource bundle = new ReloadableResourceBundleMessageSource();
 	bundle.setDefaultEncoding("UTF-8");
 	Properties fileEncodings = new Properties();
-	fileEncodings.setProperty("application-messages","UTF-8");
+	fileEncodings.setProperty("application-messages", "UTF-8");
 	bundle.setFileEncodings(fileEncodings);
 	bundle.setFallbackToSystemLocale(true);
 	bundle.setBasename("classpath:application-messages");

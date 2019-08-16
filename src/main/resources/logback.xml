@@ -4,7 +4,7 @@
     <then>
        <!-- <property scope="context" name="LOGSTASH_HOST" value="${LOGSTASH_HOST:-localhost}"/> -->
        <property scope="context" name="LOGSTASH_HOST" value="192.168.1.228"/>
-        <property scope="context" name="LOGSTASH_PORT" value="9200"/>
+        <property scope="context" name="LOGSTASH_PORT" value="5000"/>
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                 <level>DEBUG</level>

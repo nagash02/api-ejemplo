@@ -36,3 +36,4 @@ build/
 *.mvn
 .settings
 /.attach_pid12918
+/bin/

@@ -66,69 +66,6 @@ public class GlobalConfiguration implements WebMvcConfigurer {
      * nuevos archivos de mapeo debe crear un nuevo bean de mapperFactory
      */
 
-    /**
-     * pool de conexiones
-     * 
-     * @return
-     */
-    @Bean
-    @Primary
-    public DataSource dataSource() {
-	HikariConfig config = new HikariConfig();
-	config.setPoolName("HickariPool - api-ejemplo");
-	config.setDriverClassName(env.getProperty("cl.trabajando.api-ejemplo.driver-class-name"));
-	config.setJdbcUrl(env.getProperty("cl.trabajando.api-ejemplo.datasource.url"));
-	config.setUsername(env.getProperty("cl.trabajando.api-ejemplo.datasource.username"));
-	config.setPassword(env.getProperty("cl.trabajando.api-ejemplo.datasource.password"));
-	config.addDataSourceProperty("cachePrepStmts", "true");
-	config.addDataSourceProperty("prepStmtCacheSize", "250");
-	config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-	config.setMinimumIdle(1);
-	config.setMaximumPoolSize(
-		Integer.parseInt(env.getProperty("cl.trabajando.api-ejemplo.datasource.pool-size").trim()));
-	return new HikariDataSource(config);
-    }
-
-    /**
-     * administrador de transacciones
-     * 
-     * @return
-     */
-    @Bean(name = "transactionManager")
-    public PlatformTransactionManager transactionManager() {
-	return new DataSourceTransactionManager(dataSource());
-    }
-
-    /**
-     * Sql factory que inicializa el map de BD
-     * 
-     * @return
-     * @throws Exception
-     */
-    @Bean(name = "sqlSessionFactory")
-    @Primary
-    public SqlSessionFactory sqlSessionFactory() throws Exception {
-	SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-	sessionFactory.setDataSource(dataSource());
-	sessionFactory.setTypeHandlersPackage("cl.trabajando.api_ejemplo.typehandlers");
-	Resource[] arrResource = new PathMatchingResourcePatternResolver().getResources("mappers/postgresql/*.xml");
-	sessionFactory.setMapperLocations(arrResource);
-	return sessionFactory.getObject();
-    }
-
-    /**
-     * Bindinfg de interfaz con archivo de mapeo
-     * 
-     * @return
-     * @throws Exception
-     */
-    @Bean(name = "mapperHolaMundo")
-    public MapperFactoryBean<HolaMundoMapper> mapperFactoryNomina() throws Exception {
-	MapperFactoryBean<HolaMundoMapper> mapperFactory = new MapperFactoryBean<HolaMundoMapper>();
-	mapperFactory.setMapperInterface(cl.trabajando.api_ejemplo.mappers.HolaMundoMapper.class);
-	mapperFactory.setSqlSessionFactory(sqlSessionFactory());
-	return mapperFactory;
-    }
 
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {

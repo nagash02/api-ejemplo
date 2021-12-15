@@ -31,17 +31,7 @@ import cl.trabajando.api_ejemplo.model.HolaMundo;
 @Rollback()
 public class ApiEjemploApplicationTests extends AbstractTestNGSpringContextTests {
 
-    private final String GOOGLE_CHROME_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
-    private MockMvc mockMvc;
-
-    @Autowired
-    private WebApplicationContext wac;
-
-    @BeforeClass
-    public void setup() throws Exception {
-	this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
-		.defaultRequest(get("/").header("User-Agent", GOOGLE_CHROME_AGENT)).build();
-    }
+    
 
     /**
      * Esta es una prueba unitaria ocupando TestNG y mock de ejemplo

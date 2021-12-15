@@ -52,7 +52,7 @@ public class MainController {
 	    @ApiResponse(code = 409, message = "Error en la aplicacion que fue capturada por un try", response = HttpStatus.class) })
     @GetMapping(value = "/v1/mensaje")
     public ResponseEntity<?> getHolaMundo() {
-	return new ResponseEntity<>(ejemploService.getHolaMundo(), HttpStatus.OK);
+	return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -98,7 +98,7 @@ public class MainController {
 	    @ApiResponse(code = 409, message = "Error controlado por un try", response = HttpStatus.class) })
     @PostMapping(value = "/v1/datos")
     public ResponseEntity<?> agregarDato(@Validated @RequestBody DatoEjemplo dato) {
-	ejemploService.insertarDato(dato);
+	//ejemploService.insertarDato(dato);
 	// si falla la validacion no entra a este controlador y devuelve un status code
 	// 400
 	return new ResponseEntity<>(HttpStatus.CREATED);

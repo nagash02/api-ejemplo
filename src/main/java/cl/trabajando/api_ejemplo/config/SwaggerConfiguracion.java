@@ -40,8 +40,8 @@ public class SwaggerConfiguracion {
     }
 
     private ApiInfo apiInfo(ReloadableResourceBundleMessageSource messageSource) {
-	return new ApiInfoBuilder().title(messageSource.getMessage("app.titulo", null, Locale.getDefault()))
-		.version(messageSource.getMessage("api-ejemplo.api.version", null, Locale.getDefault()))
+	return new ApiInfoBuilder().title("")
+		.version("")
 		.description("api-ejemplo").build();
     }
 
